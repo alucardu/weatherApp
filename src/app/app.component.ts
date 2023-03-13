@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherService } from './services/weatherService.service';
+import { WeatherService } from './services/weather.service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,6 @@ export class AppComponent implements OnInit {
     public weather$ = this.weatherService.weather$
 
   ngOnInit(): void {
-    this.weatherService.getWeather();
+    this.weatherService.getWeatherInfo();
   }
 }

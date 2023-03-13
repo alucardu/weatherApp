@@ -1,3 +1,10 @@
+<mat-card>
+  <mat-card-content>
+    <app-queryLocation></app-queryLocation>
+    <app-displayLocations></app-displayLocations>
+  </mat-card-content>
+</mat-card>
+
 <div *ngIf="weather$ | async as weather">
   {{weather | json}}
 </div>

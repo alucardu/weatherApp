@@ -1,0 +1,7 @@
+<div *ngFor="let location of locations$ | async" class="locationContainer">
+  <span class="fi fi-{{location.country | lowercase }}"></span>
+  <span>{{location.name}}</span>
+  <span class="state">{{location.state}}</span>
+  <span>{{ location.countryFull}}</span>
+</div>
+

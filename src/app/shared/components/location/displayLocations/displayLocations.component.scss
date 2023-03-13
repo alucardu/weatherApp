@@ -1,0 +1,25 @@
+@import "variables";
+
+.locationContainer {
+  display: flex;
+  background-color: $font-light-blue;
+  padding: $padding-normal;
+  cursor: pointer;
+  transition: all 0.125s ease;
+  font-weight: $weight-bold;
+  span {
+    margin-right: 1rem;
+    &.state {
+      font-weight: $weight-light;
+      color: $font-grey;
+    }
+    &:last-child {
+      margin-left: auto;
+      color: $font-grey;
+    }
+  }
+  &:hover {
+    background-color: $font-blue;
+    padding-left: $padding-large;
+  }
+}

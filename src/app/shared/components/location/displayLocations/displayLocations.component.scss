@@ -1,8 +1,12 @@
+@use '@angular/material' as mat;
+
 @import "variables";
+
+$my-palette: mat.define-palette(mat.$indigo-palette);
 
 .locationContainer {
   display: flex;
-  background-color: $font-light-blue;
+  background: mat.get-color-from-palette($my-palette, 500);
   padding: $padding-normal;
   cursor: pointer;
   transition: all 0.125s ease;
@@ -19,7 +23,12 @@
     }
   }
   &:hover {
-    background-color: $font-blue;
+    background: mat.get-color-from-palette($my-palette, 'darker');
     padding-left: $padding-large;
+    color: mat.get-color-from-palette($my-palette, 'darker-contrast');
   }
+}
+
+.noResults {
+  padding-top: $padding-normal;
 }

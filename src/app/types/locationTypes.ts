@@ -3,4 +3,6 @@ export type Location = {
   state: string
   country: string
   countryFull: string
+  lon: number
+  lat: number
 }

@@ -14,9 +14,11 @@ export class QueryLocationComponent {
     private locationService: LocationService
   ) {
     this.watchQuery();
+    this.resetLocationInput();
   }
 
   public locations$ = this.locationService.locations$;
+  public location$ = this.locationService.location$
 
   public location = new FormControl('', {
     nonNullable: true,
@@ -26,6 +28,16 @@ export class QueryLocationComponent {
     ]
   })
 
+  public queryLocation(query: string): void {
+    if (this.location.value.length === 0) {
+      this.locationService.clearLocations();
+    }
+
+    if (this.location.invalid) return;
+
+    this.locationService.setLocationsInfo(query);
+  }
+
   private watchQuery(): void {
     this.location.valueChanges.pipe(
       debounceTime(500),
@@ -34,9 +46,9 @@ export class QueryLocationComponent {
     })
   }
 
-  public queryLocation(query: string): void {
-    if (this.location.invalid) return;
-
-    this.locationService.setLocationInfo(query);
+  private resetLocationInput(): void {
+    this.location$.subscribe({
+      next: () => this.location.reset()
+    })
   }
 }

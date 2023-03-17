@@ -6,7 +6,6 @@ $my-palette: mat.define-palette(mat.$indigo-palette);
 
 .weatherDetailsContainer {
   display: flex;
-
   .weatherDetails {
     width: 50%;
     div {
@@ -29,5 +28,11 @@ $my-palette: mat.define-palette(mat.$indigo-palette);
     justify-content: center;
     font-size: 12rem;
     color: mat.get-color-from-palette($my-palette, 'darker');
+  }
+  @media screen and (max-width: $phone) {
+    flex-direction: column-reverse;
+    .weatherDetails, .weatherDetailsIcon {
+      width: 100%;
+    }
   }
 }

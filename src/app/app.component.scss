@@ -1,7 +1,14 @@
+@import 'variables';
+
 :host {
   display: inline;
   width: 50%;
   min-width: 1024px;
   max-width: 1024px;
   padding: 1rem;
+  @media screen and (max-width: $phone) {
+    max-width: 100%;
+    min-width: 100%;
+    padding: 0;
+  }
 }

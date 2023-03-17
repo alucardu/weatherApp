@@ -5,7 +5,7 @@
   <span class="fi fi-{{location.country | lowercase }}"></span>
   <span>{{location.name}}</span>
   <span class="state">{{location.state}}</span>
-  <span>{{ location.countryFull}}</span>
+  <span class="locationDetail">{{ location.countryFull}}</span>
 </div>
 
 <div *ngIf="(locations$ | async)?.length === 0" class="noResults">

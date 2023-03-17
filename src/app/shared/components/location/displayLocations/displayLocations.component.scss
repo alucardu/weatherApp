@@ -32,3 +32,9 @@ $my-palette: mat.define-palette(mat.$indigo-palette);
 .noResults {
   padding-top: $padding-normal;
 }
+
+.locationDetail {
+  @media screen and (max-width: $phone) {
+    display: none;
+  }
+}

@@ -31,6 +31,13 @@ mat-spinner {
 .header {
   display: flex;
   align-items: center;
+  @media screen and (max-width: $phone) {
+    flex-wrap: wrap;
+    button {
+      flex-basis: 100%;
+      margin-top: $padding-normal;
+    }
+  }
   .locationInfo {
     margin-left: $padding-small;
   }
@@ -43,4 +50,10 @@ mat-spinner {
   color: mat.get-color-from-palette($my-palette, 'accent');
   font-size: $icon-size-normal;
   font-weight: $weight-bolder;
+}
+
+.dateDetailed {
+  @media screen and (max-width: $phone) {
+    display: none;
+  }
 }

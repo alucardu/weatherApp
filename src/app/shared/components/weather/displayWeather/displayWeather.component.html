@@ -1,9 +1,10 @@
 <mat-card>
   <mat-spinner mode="indeterminate" *ngIf="weatherLoading$ | async"></mat-spinner>
   <mat-card-content *ngIf="vm$ | async as vm">
-    <div class="header">
+    <div class="header" data-cy="weatherHeader">
       <span class="fi fi-{{vm.location?.country | lowercase }}"></span><span class="locationInfo">{{vm.location?.name}} - {{vm.location?.state}}</span>
       <button
+        data-cy="toggleView"
         mat-flat-button
         color="primary"
         (click)="displayWeekInfo = !displayWeekInfo">
@@ -11,7 +12,7 @@
       </button>
     </div>
 
-    <table mat-table [dataSource]="displayWeekInfo ? vm.weather.daily : [vm.weather.current]">
+    <table mat-table [dataSource]="displayWeekInfo ? vm.weather.daily : [vm.weather.current]" data-cy="weatherTable">
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="displayWeatherDetails(row)"></tr>
 
@@ -51,6 +52,6 @@
 
 <mat-card *ngIf="detailedWeather$ | async as weather">
   <mat-card-content>
-    <app-weatherDetails [weather]="weather"></app-weatherDetails>
+    <app-weatherDetails [weather]="weather" data-cy="weatherDetails"></app-weatherDetails>
   </mat-card-content>
 </mat-card>

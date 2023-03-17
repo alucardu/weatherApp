@@ -1,0 +1,11 @@
+@import 'variables';
+
+mat-spinner {
+  margin-left: calc(50% - 50px);
+  margin-top: $padding-normal;
+  margin-bottom: $padding-normal;
+}
+
+button {
+  margin-top: $padding-normal;
+}

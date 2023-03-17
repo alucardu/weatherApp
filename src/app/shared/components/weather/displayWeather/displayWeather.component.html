@@ -1,7 +1,15 @@
 <mat-card>
   <mat-spinner mode="indeterminate" *ngIf="weatherLoading$ | async"></mat-spinner>
   <mat-card-content *ngIf="vm$ | async as vm">
-    <span class="fi fi-{{vm.location?.country | lowercase }}"></span> {{vm.location?.name}} - {{vm.location?.state}}
+    <div class="header">
+      <span class="fi fi-{{vm.location?.country | lowercase }}"></span><span class="locationInfo">{{vm.location?.name}} - {{vm.location?.state}}</span>
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="displayWeekInfo = !displayWeekInfo">
+        {{ displayWeekInfo ? 'Toon vandaag' : 'Toon de hele week'}}
+      </button>
+    </div>
 
     <table mat-table [dataSource]="displayWeekInfo ? vm.weather.daily : [vm.weather.current]">
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -13,33 +21,36 @@
       </ng-container>
 
       <ng-container [matColumnDef]="displayColumnsEnum.TEMP">
-        <th mat-header-cell *matHeaderCellDef> Temperatuur. </th>
+        <th mat-header-cell *matHeaderCellDef> <i class="wi wi-thermometer"></i> </th>
         <td mat-cell *matCellDef="let element"> {{element.temp | temperature}} </td>
       </ng-container>
 
       <ng-container [matColumnDef]="displayColumnsEnum.CLOUDS">
-        <th mat-header-cell *matHeaderCellDef> Bewolking. </th>
+        <th mat-header-cell *matHeaderCellDef> <i class="wi wi-cloud"></i> </th>
         <td mat-cell *matCellDef="let element"> {{element.clouds}}% </td>
       </ng-container>
 
       <ng-container [matColumnDef]="displayColumnsEnum.WIND_SPEED">
-        <th mat-header-cell *matHeaderCellDef> Windkracht. </th>
+        <th mat-header-cell *matHeaderCellDef> <i class="wi wi-cloudy-gusts"></i> </th>
         <td mat-cell *matCellDef="let element"> {{element.wind_speed}} km/u </td>
       </ng-container>
 
       <ng-container [matColumnDef]="displayColumnsEnum.PROBABILITY_OF_PRECIPITATION">
-        <th mat-header-cell *matHeaderCellDef> Neerslag. </th>
+        <th mat-header-cell *matHeaderCellDef>  <i class="wi wi-rain"></i> </th>
         <td mat-cell *matCellDef="let element"> {{element.pop}} mm </td>
+      </ng-container>
+
+      <ng-container [matColumnDef]="displayColumnsEnum.DESCRIPTION">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element"><i class="wi wi-owm-{{element.weather[0].id}}"></i></td>
       </ng-container>
     </table>
 
-    <button
-      mat-flat-button
-      color="primary"
-      (click)="displayWeekInfo = !displayWeekInfo">
-      {{ displayWeekInfo ? 'Toon vandaag' : 'Toon de hele week'}}
-    </button>
-
   </mat-card-content>
-  <app-weatherDetails *ngIf="weather" [weather]="weather"></app-weatherDetails>
+</mat-card>
+
+<mat-card *ngIf="detailedWeather$ | async as weather">
+  <mat-card-content>
+    <app-weatherDetails [weather]="weather"></app-weatherDetails>
+  </mat-card-content>
 </mat-card>

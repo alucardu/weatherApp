@@ -1,10 +1,16 @@
-<mat-card-content class="weatherDetails">
-  <div><span>Datum</span> <span>{{ weather.dt | date }}</span></div>
-  <div><span>Zonsopgang</span> <span>{{ weather.sunrise | date:'shortTime' }}</span></div>
-  <div><span>Zonsondergang</span> <span>{{ weather.sunset | date:'shortTime' }}</span></div>
-  <div><span>Beschrijving</span> <span>{{ weather.weather[0].description }}</span></div>
-  <div><span>Bewolking</span> <span>{{ weather.clouds }}%</span></div>
-  <div><span>Neerslag</span> <span>{{ weather.pop }}</span></div>
-  <div><span>Temperatuur</span> <span>{{ +weather.temp | temperature }}</span></div>
-  <div><span>Voelt als</span> <span>{{ +weather.feels_like | temperature }}</span></div>
+<mat-card-content class="weatherDetailsContainer">
+  <div class="weatherDetails">
+    <div><span>Datum</span> <span>{{ weather.dt | date }}</span></div>
+    <div><span>Temperatuur</span> <span>{{ +weather.temp | temperature }}</span></div>
+    <div><span>Voelt als</span> <span>{{ +weather.feels_like | temperature }}</span></div>
+    <div><span>Zonsopgang</span> <span>{{ weather.sunrise | date:'shortTime' }}</span></div>
+    <div><span>Zonsondergang</span> <span>{{ weather.sunset | date:'shortTime' }}</span></div>
+    <div><span>Voorspelling</span> <span>{{ weather.weather[0].description }}</span></div>
+    <div><span>Bewolking</span> <span>{{ weather.clouds }}%</span></div>
+    <div><span>Neerslag</span> <span>{{ weather.pop }}</span></div>
+
+  </div>
+  <div class="weatherDetailsIcon">
+    <i class="wi wi-owm-{{weather.weather[0].id}}"></i>
+  </div>
 </mat-card-content>

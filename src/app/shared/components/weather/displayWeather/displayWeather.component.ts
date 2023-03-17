@@ -9,7 +9,8 @@ enum DisplayedColumns {
   TEMP = 'temp',
   CLOUDS = 'clouds',
   WIND_SPEED = 'windSpeed',
-  PROBABILITY_OF_PRECIPITATION = 'probabilityOfPrecipitation'
+  PROBABILITY_OF_PRECIPITATION = 'probabilityOfPrecipitation',
+  DESCRIPTION = 'description'
 }
 
 @Component({
@@ -21,13 +22,18 @@ export class DisplayWeatherComponent {
   constructor(
     private weatherService: WeatherService,
     private locationService: LocationService
-  ) {}
+  ) {
+    this.weather$.subscribe({
+      next: (data) => this.weatherService.setDetailedWeatherInformation(data.current)
+    })
+  }
 
   public displayColumnsEnum = DisplayedColumns;
 
   public weather$ = this.weatherService.weather$;
   public weatherLoading$ = this.weatherService.weatherLoading$
   public location$ = this.locationService.location$;
+  public detailedWeather$ = this.weatherService.detailedWeather$;
 
   public displayWeekInfo = false;
   public displayedColumns: Array<string> = [...Object.values(DisplayedColumns)];
@@ -39,6 +45,6 @@ export class DisplayWeatherComponent {
   )
 
   public displayWeatherDetails(weather: WeatherObj): void {
-    this.weather = weather;
+    this.weatherService.setDetailedWeatherInformation(weather)
   }
 }

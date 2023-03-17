@@ -16,6 +16,7 @@ import { QueryLocationComponent } from './shared/components/location/queryLocati
 import { DisplayLocationsComponent } from './shared/components/location/displayLocations/displayLocations.component';
 import { DisplayWeatherComponent } from './shared/components/weather/displayWeather/displayWeather.component';
 import { TemperaturePipe } from './shared/pipes/temperature.pipe';
+import { WeatherDetailsComponent } from './shared/components/weather/weatherDetails/weatherDetails.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TemperaturePipe } from './shared/pipes/temperature.pipe';
     QueryLocationComponent,
     DisplayLocationsComponent,
     DisplayWeatherComponent,
-    TemperaturePipe
+    TemperaturePipe,
+    WeatherDetailsComponent
   ],
   imports: [
     BrowserModule,

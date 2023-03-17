@@ -9,3 +9,7 @@ mat-spinner {
 button {
   margin-top: $padding-normal;
 }
+
+.mat-mdc-table tr.mat-mdc-row {
+  cursor: pointer;
+}

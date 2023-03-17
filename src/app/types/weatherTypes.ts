@@ -16,7 +16,7 @@ export type WeatherObj = {
   temp: number | Temp
   uvi: number
   visibility: number
-  weather: Weather
+  weather: Array<Weather>
   wind_deg: number
   wind_speed: number
   pop: number

@@ -1,0 +1,24 @@
+@use '@angular/material' as mat;
+
+@import 'variables';
+
+$my-palette: mat.define-palette(mat.$indigo-palette);
+
+.weatherDetails {
+  div {
+    display: flex;
+    padding: $padding-small;
+    margin-bottom: $padding-small;
+    &:nth-child(odd) {
+      background: mat.get-color-from-palette($my-palette, 'lighter');
+    }
+  }
+  span {
+    &:first-child {
+      width: 30%;
+    }
+    &:last-child {
+      width: 100;
+    }
+  }
+}

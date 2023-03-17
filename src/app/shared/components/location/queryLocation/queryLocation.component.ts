@@ -19,6 +19,7 @@ export class QueryLocationComponent {
 
   public locations$ = this.locationService.locations$;
   public location$ = this.locationService.location$
+  public locationsLoading$ = this.locationService.locationsLoadingSubject$
 
   public location = new FormControl('', {
     nonNullable: true,

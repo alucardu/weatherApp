@@ -7,3 +7,4 @@
     placeholder="Zoek naar een stad...">
     <mat-icon matPrefix>search</mat-icon>
 </mat-form-field>
+<mat-progress-bar *ngIf="locationsLoading$ | async" mode="indeterminate"></mat-progress-bar>

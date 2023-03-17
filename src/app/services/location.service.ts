@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Subject } from 'rxjs';
+import { BehaviorSubject, map, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Location } from '../types/locationTypes';
 import * as countries from 'i18n-iso-countries';
@@ -17,13 +17,17 @@ export class LocationService {
     i18nIsoCountries.registerLocale(require("i18n-iso-countries/langs/en.json"));
   }
 
-  readonly locationsSubject$ = new Subject<Array<Location> | null>()
-  readonly locations$ = this.locationsSubject$.asObservable();
+  public readonly locationsSubject$ = new Subject<Array<Location> | null>()
+  public readonly locations$ = this.locationsSubject$.asObservable();
 
-  readonly locationSubject$ = new Subject<Location | null>()
-  readonly location$ = this.locationSubject$.asObservable();
+  public readonly locationSubject$ = new Subject<Location | null>()
+  public readonly location$ = this.locationSubject$.asObservable();
+
+  public readonly locationsLoadingSubject$ = new BehaviorSubject<boolean>(false)
+  public readonly locationsLoading$ = this.locationsLoadingSubject$.asObservable();
 
   public setLocationsInfo(city: string): void {
+    this.locationsLoadingSubject$.next(true)
     this.http.get<Array<Location>>(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&APPID=${environment.weatherApi}`).pipe(
       map((locations) => locations.map((location) => {
         return {
@@ -32,7 +36,8 @@ export class LocationService {
         }
       })),
     ).subscribe({
-      next: (data) => this.locationsSubject$.next(data)
+      next: (data) => this.locationsSubject$.next(data),
+      complete: () => this.locationsLoadingSubject$.next(false)
     })
   }
 

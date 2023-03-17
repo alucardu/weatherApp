@@ -25,10 +25,11 @@ export class DisplayWeatherComponent {
   public displayColumnsEnum = DisplayedColumns;
 
   public weather$ = this.weatherService.weather$;
+  public weatherLoading$ = this.weatherService.weatherLoading$
   public location$ = this.locationService.location$;
 
   public displayWeekInfo = false;
-  public displayedColumns: string[] = [DisplayedColumns.DATE, DisplayedColumns.TEMP, DisplayedColumns.CLOUDS, DisplayedColumns.WIND_SPEED, DisplayedColumns.PROBABILITY_OF_PRECIPITATION];
+  public displayedColumns: Array<string> = [...Object.values(DisplayedColumns)];
 
   public vm$ = combineLatest([this.weather$, this.location$]).pipe(
     map(([weather, location]) => ({weather, location})),

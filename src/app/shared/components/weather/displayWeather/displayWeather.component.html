@@ -1,9 +1,8 @@
-<mat-card *ngIf="vm$ | async as vm">
-  <mat-card-content>
+<mat-card>
+  <mat-spinner mode="indeterminate" *ngIf="weatherLoading$ | async"></mat-spinner>
+  <mat-card-content *ngIf="vm$ | async as vm">
     <span class="fi fi-{{vm.location?.country | lowercase }}"></span> {{vm.location?.name}} - {{vm.location?.state}}
-  </mat-card-content>
 
-  <mat-card-content>
     <table mat-table [dataSource]="displayWeekInfo ? vm.weather.daily : [vm.weather.current]">
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

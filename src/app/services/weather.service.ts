@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { map, Subject, tap } from 'rxjs'
+import { BehaviorSubject, map, Subject } from 'rxjs'
 import { Temp, WeatherCollection, WeatherObj } from '../types/weatherTypes'
 import { Location } from '../types/locationTypes';
 
@@ -17,29 +17,34 @@ constructor(
   public weatherSubject$ = new Subject<WeatherCollection>()
   public weather$ = this.weatherSubject$.asObservable();
 
+  public weatherLoadingSubject$ = new BehaviorSubject<boolean>(false)
+  public weatherLoading$ = this.weatherLoadingSubject$.asObservable();
+
   public setWeatherInfo(location: Location): void {
+    this.weatherLoadingSubject$.next(true)
     this.http.get<WeatherCollection>(`https://api.openweathermap.org/data/3.0/onecall?lat=${location.lat}&lon=${location.lon}&lang=nl&exclude=minutely&appid=${environment.weatherApi}&units=metric`).pipe(
       map((weatherCollection) => {
         return {
           ...weatherCollection,
           current: {
-            ...this.transformWeatherDate(weatherCollection.current)
+            ...this.formatWeatherData(weatherCollection.current)
           },
           daily: [
             ...weatherCollection.daily.map((daily) => {
               return {
-                ...this.transformWeatherDate(daily)
+                ...this.formatWeatherData(daily)
               }
             })
           ]
         }
       }),
     ).subscribe({
-      next: (data) => this.weatherSubject$.next(data)
+      next: (data) => this.weatherSubject$.next(data),
+      complete: () => this.weatherLoadingSubject$.next(false)
     })
   }
 
-  private transformWeatherDate(weather: WeatherObj): WeatherObj {
+  private formatWeatherData(weather: WeatherObj): WeatherObj {
     return {
       ...weather,
       pop: weather.pop || 0,

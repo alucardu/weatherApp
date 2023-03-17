@@ -17,6 +17,9 @@ constructor(
   public weatherSubject$ = new Subject<WeatherCollection>()
   public weather$ = this.weatherSubject$.asObservable();
 
+  public detaileddWeatherSubject$ = new Subject<WeatherObj>();
+  public detailedWeather$ = this.detaileddWeatherSubject$.asObservable();
+
   public weatherLoadingSubject$ = new BehaviorSubject<boolean>(false)
   public weatherLoading$ = this.weatherLoadingSubject$.asObservable();
 
@@ -42,6 +45,10 @@ constructor(
       next: (data) => this.weatherSubject$.next(data),
       complete: () => this.weatherLoadingSubject$.next(false)
     })
+  }
+
+  public setDetailedWeatherInformation(weather: WeatherObj): void {
+    this.detaileddWeatherSubject$.next(weather)
   }
 
   private formatWeatherData(weather: WeatherObj): WeatherObj {

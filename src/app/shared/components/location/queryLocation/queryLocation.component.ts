@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { debounceTime } from 'rxjs';
+import { debounceTime, filter, tap } from 'rxjs';
 import { LocationService } from 'src/app/services/location.service';
 
 @Component({
@@ -24,7 +24,6 @@ export class QueryLocationComponent {
   public location = new FormControl('', {
     nonNullable: true,
     validators: [
-      Validators.required,
       Validators.minLength(2),
     ]
   })
@@ -43,7 +42,7 @@ export class QueryLocationComponent {
     this.location.valueChanges.pipe(
       debounceTime(500),
     ).subscribe({
-      next: (query) => this.queryLocation(query)
+      next: (query) => this.queryLocation(query),
     })
   }
 

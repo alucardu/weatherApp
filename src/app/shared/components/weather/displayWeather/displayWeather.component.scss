@@ -1,4 +1,8 @@
+@use '@angular/material' as mat;
+
 @import 'variables';
+
+$my-palette: mat.define-palette(mat.$indigo-palette);
 
 mat-spinner {
   margin-left: calc(50% - 50px);
@@ -6,10 +10,37 @@ mat-spinner {
   margin-bottom: $padding-normal;
 }
 
-button {
-  margin-top: $padding-normal;
-}
-
 .mat-mdc-table tr.mat-mdc-row {
   cursor: pointer;
+}
+
+.mat-mdc-header-row th {
+  &:first-child {
+    text-align: left;
+  }
+  text-align: center;
+}
+
+.mat-mdc-row td {
+  &:first-child {
+    text-align: left;
+  }
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  .locationInfo {
+    margin-left: $padding-small;
+  }
+  button {
+    margin-left: auto;
+  }
+}
+
+.wi {
+  color: mat.get-color-from-palette($my-palette, 'accent');
+  font-size: $icon-size-normal;
+  font-weight: $weight-bolder;
 }

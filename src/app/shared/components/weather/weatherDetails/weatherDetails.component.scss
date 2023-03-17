@@ -4,21 +4,30 @@
 
 $my-palette: mat.define-palette(mat.$indigo-palette);
 
-.weatherDetails {
-  div {
-    display: flex;
-    padding: $padding-small;
-    margin-bottom: $padding-small;
-    &:nth-child(odd) {
-      background: mat.get-color-from-palette($my-palette, 'lighter');
+.weatherDetailsContainer {
+  display: flex;
+
+  .weatherDetails {
+    width: 50%;
+    div {
+      display: flex;
+      padding: $padding-small;
+      margin-bottom: $padding-small;
+      span {
+        &:first-child {
+          width: 50%;
+        }
+      }
+      &:nth-child(odd) {
+        background: mat.get-color-from-palette($my-palette, 'lighter');
+      }
     }
   }
-  span {
-    &:first-child {
-      width: 30%;
-    }
-    &:last-child {
-      width: 100;
-    }
+  .weatherDetailsIcon {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    font-size: 12rem;
+    color: mat.get-color-from-palette($my-palette, 'darker');
   }
 }

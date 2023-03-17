@@ -27,6 +27,8 @@ export class LocationService {
   public readonly locationsLoading$ = this.locationsLoadingSubject$.asObservable();
 
   public setLocationsInfo(city: string): void {
+    if (city.length === 0) return;
+
     this.locationsLoadingSubject$.next(true)
     this.http.get<Array<Location>>(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&APPID=${environment.weatherApi}`).pipe(
       map((locations) => locations.map((location) => {

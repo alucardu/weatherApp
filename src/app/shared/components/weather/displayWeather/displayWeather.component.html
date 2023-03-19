@@ -55,3 +55,7 @@
     <app-weatherDetails [weather]="weather" data-cy="weatherDetails"></app-weatherDetails>
   </mat-card-content>
 </mat-card>
+
+<mat-card *ngIf="weather$ | async as weather">
+  <app-graph [weather]="weather"></app-graph>
+</mat-card>

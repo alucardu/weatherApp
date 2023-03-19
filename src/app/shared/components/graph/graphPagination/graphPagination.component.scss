@@ -1,0 +1,11 @@
+@import 'variables';
+
+:host {
+  display: flex;
+  justify-content: center;
+  padding: $padding-normal;
+}
+
+button {
+  margin: 0 $padding-small 0 $padding-small;
+}

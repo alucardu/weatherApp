@@ -1,0 +1,13 @@
+<button
+  mat-flat-button
+  color="primary"
+  [disabled]="previousBtn"
+  (click)="navigateChart(timeNavigationEnum.PREVIOUS)"
+>< 8</button>
+
+<button
+  mat-flat-button
+  color="primary"
+  (click)="navigateChart(timeNavigationEnum.NEXT)"
+  [disabled]="nextBtn"
+>> 8</button>

@@ -1,0 +1,10 @@
+<mat-card-content>
+  <span>Komende 48 uur.</span>
+  <div class="chart-container">
+    <canvas  id="weatherChart" >{{ chart }}</canvas>
+    <app-graphPagination
+      [chartData]="{chartData, chartLabels}"
+      (newChartEvent)="updateChart($event)"
+    ></app-graphPagination>
+  </div>
+</mat-card-content>

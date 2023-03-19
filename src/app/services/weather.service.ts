@@ -38,6 +38,13 @@ constructor(
                 ...this.formatWeatherData(daily)
               }
             })
+          ],
+          hourly: [
+            ...weatherCollection.hourly.map((hourly) => {
+              return {
+                ...this.formatWeatherData(hourly)
+              }
+            })
           ]
         }
       }),

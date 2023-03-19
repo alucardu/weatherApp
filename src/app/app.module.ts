@@ -17,6 +17,8 @@ import { DisplayLocationsComponent } from './shared/components/location/displayL
 import { DisplayWeatherComponent } from './shared/components/weather/displayWeather/displayWeather.component';
 import { TemperaturePipe } from './shared/pipes/temperature.pipe';
 import { WeatherDetailsComponent } from './shared/components/weather/weatherDetails/weatherDetails.component';
+import { GraphComponent } from './shared/components/graph/graph/graph.component';
+import { GraphPaginationComponent } from './shared/components/graph/graphPagination/graphPagination.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { WeatherDetailsComponent } from './shared/components/weather/weatherDeta
     DisplayLocationsComponent,
     DisplayWeatherComponent,
     TemperaturePipe,
-    WeatherDetailsComponent
+    WeatherDetailsComponent,
+    GraphComponent,
+    GraphPaginationComponent,
   ],
   imports: [
     BrowserModule,
